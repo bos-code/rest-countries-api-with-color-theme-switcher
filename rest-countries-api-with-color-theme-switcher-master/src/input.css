@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	box-sizing: border-box;
+	font-family: 'Nunito Sans', sans-serif;
+}
+
+:root {
+	--app-background: #fafafa;
+	--appbar: #ffffff;
+	--element: #ffffff;
+	--text: #111517;
+	--input: #ffffff;
+	--gradient: linear-gradient(
+		to right,
+		#ffffff 0%,
+		#eeeeee 20%,
+		#ffffff 40%,
+		#ffffff 100%
+	);
+}
+
+:root[data-theme='dark'] {
+	--app-background: #202c37;
+	--appbar: #2b3945;
+	--element: #2b3945;
+	--text: #ffffff;
+	--input: #858585;
+	--gradient: linear-gradient(
+		to right,
+		#2b3945 0%,
+		#364655 20%,
+		#2b3945 40%,
+		#2b3945 100%
+	);
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	width: 100%;
+	height: auto;
+	min-height: 100vh;
+}
+
+div[id='root'] {
+	width: 100%;
+	height: auto;
+	min-height: 100vh;
+	background-color: var(--app-background);
+}
+
+@keyframes shineEffect {
+	0% {
+		background-position: -468px 0;
+	}
+	100% {
+		background-position: 468px 0;
+	}
+}
