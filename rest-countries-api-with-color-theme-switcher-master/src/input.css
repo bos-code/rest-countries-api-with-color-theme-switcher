@@ -50,10 +50,20 @@ html {
 	scroll-behavior: smooth;
 }
 
+nav{
+	background-color: var(--appbar);
+}
+
+form input{
+	background-image: url('..');
+}
+
 body {
+	padding: 400;
 	width: 100%;
 	height: auto;
 	min-height: 100vh;
+	background-color: var(--app-background) ;
 }
 
 div[id='root'] {
@@ -70,4 +80,8 @@ div[id='root'] {
 	100% {
 		background-position: 468px 0;
 	}
+}
+
+.display-none{
+	@apply hidden;
 }
