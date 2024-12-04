@@ -15,16 +15,16 @@ const cardMarkUp = `
         <img w-20 src=":IMG",  alt=":NAME">
         <p>:NAME</p>
         <ul>
-            <li><p>:population</p></li>
-            <li><p>:REGION</p></li>
-            <li><p>:CAPITAL</p></li>
+            <li><p>population: :population</p></li>
+            <li><p>Region: :REGION</p></li>
+            <li><p>capital: :CAPITAL</p></li>
         </ul>
 
 
     </li>`;
 
 const countries = [];
-const region = []
+let region = []
 
 async function getCountries() {
   const response = await fetch("/data.json");
@@ -43,14 +43,25 @@ async function getCountries() {
     const reg = country.region
 
     region.push(reg)
-    // cardContainer.insertAdjacentHTML("beforeend", temp);
+    cardContainer.insertAdjacentHTML("beforeend", temp);
   });
   const allRegions = [...new Set(region)]
-  return allRegions;
+  down.innerHTML = ''
+  
+  allRegions.forEach(reg =>{
+console.log(reg);
+const regionTemp = ` <li class=" list-none" data-region="${reg}">${reg}</li>`
+down.insertAdjacentHTML('afterbegin', regionTemp)
+
+
+  })
 }
 
-
+await console.log(region);
 getCountries();
+getCountries.bind(region)
+
+
 
 
 
@@ -94,17 +105,13 @@ drop.addEventListener('click',
   toggleDropdown
 )
 
-const regionTemp = ` <li class=" list-none">:REG</li>`
 
-const renderRegion = function () {
-  let down = ''
-  renderRegion.bind(getCountries.bind(this.allRegions))
-  console.log(allRegions);
-  allRegions.forEach(reg => {
+//   const renderRegion =async function () {
+//   console.log(region);
+//  console.log( getCountries.bind(allRegions));
+//   region.forEach(reg => {
 
-    const regionTemp = ` <li class=" list-none">${reg}</li>`
-    down.insertAdjacentHTML('beforebegin', regionTemp)
-  })
+//   })
 
-}
-window.addEventListener('load', renderRegion)
+// }
+// window.addEventListener('load', renderRegion)
