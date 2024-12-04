@@ -54,7 +54,10 @@ nav{
 	background-color: var(--appbar);
 }
 
- 
+form input{
+	background-image: url('..');
+}
+
 body {
 	padding: 400;
 	width: 100%;
@@ -81,7 +84,4 @@ div[id='root'] {
 
 .display-none{
 	@apply hidden;
-}
-.span{
-	@apply text-[--input]
 }
