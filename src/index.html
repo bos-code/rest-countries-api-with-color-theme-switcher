@@ -12,32 +12,59 @@
 
 <body>
 
-  <nav class="px-4 py-4  flex-wrap flex justify-between content-center ">
+  <nav class="px-10 py-4   flex-wrap flex justify-between content-center ">
     <h2 class=" text-xl text-[--text] ">Where in the world</h2>
     <div class="theme">
       <figure class="figure  flex gap-2 justify-center content-center">
         <img class="moon  icon" data-theme="dark" src="./asset/Moon.svg" alt="">
         <img class="sun icon" data-theme="light" src="./asset/sun.svg" alt="">
         <figcaption class=" text-[--text] capitalize">dark mode</figcaption>
-      </>
-    
+        </>
+
     </div>
   </nav>
   <div id="root" class=" p-4 rounded-lg ">
-    
-  <div class="assesibles content-center flex justify-between">
 
+<<<<<<< Updated upstream
     <form class=" relativeflex  grow  w-60 mx-auto">   
       <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
       <div class=" relative">
+=======
+    <div class="assesibles mx-6 content-center flex justify-between">
+
+      <form class=" relative flex  grow  w-60 mx-auto">
+        <label for="default-search"
+          class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+        <div class=" relative">
+>>>>>>> Stashed changes
           <div class="absolute top- inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg class="w-4 h-4 text-[--text] dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-              </svg>
+            <svg class="w-4 h-4 text-[--text] dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+            </svg>
           </div>
-          <input type="search" id="default-search" class="block  w-80   p-2 rounded-md ps-10 placeholder:text-[--text] text-[--text] placeholder:text-xs bg-[--appbar] text-sm"placeholder="Search for a country..." required />
-          
+          <input type="search" id="default-search"
+            class="block  w-80 shadow-2xl   p-2 rounded-md ps-10 placeholder:text-[--text] text-[--text] placeholder:text-xs bg-[--appbar] text-sm"
+            placeholder="Search for a country..." required />
+
+        </div>
+      </form>
+
+      <div class="dropdown  relative  flex flex-col gap-1 ">
+        <div class="drop shadow-xl  gap-2  bg-[--appbar] px-5 pt-2 rounded flex ">
+          <p class=" capitalize text-sm text-[--text] bg-[--appbar]">filter by region</p>
+          <svg class=" fill-white " xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+            width="24px">
+            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+          </svg>
+
+        </div>
+        <div class="down shadow-xl absolute top-12 w-full   display-none p-3 text-[--text] bg-[--appbar] px-5 py-2 rounded   ">
+          <li class=" list-none text-xs z-10 ">africa</li>
+        </div>
       </div>
+<<<<<<< Updated upstream
     </form>
 
     <div class="dropdown flex flex-col gap-1 ">
@@ -49,22 +76,37 @@
       <li class=" list-none">africa</li>
     </div>
   </div>
+=======
+</div>
+>>>>>>> Stashed changes
 
 
-    <!-- <li class="cards ">
-      <img src=":img" alt=":NAME">
-      <p>:NAME</p>
-      <ul>
-          <li><p>:population</p></li>
-          <li><p>:REGION</p></li>
-          <li><p>:CAPITAL</p></li>
-      </ul>
-      
-      
-  </li> -->
+      <div id="cardCont" class="renderCards mx-6 mt-16 h-full grid   lg:grid-cols-4 md:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1 xxs:grid-cols-1 gap-10"  >
+        <!-- <li class="cards  flex align-items list-none  flex-col ">
+          <img w- src=":IMG" , alt=":NAME">
+          <div class="textbox">
+            <p>:NAME</p>
+            <ul>
+              <li>
+                <p>population: :population</p>
+              </li>
+              <li>
+                <p>Region: :REGION</p>
+              </li>
+              <li>
+                <p>capital: :CAPITAL</p>
+              </li>
+            </ul>
+          </div>
+
+        </li>`; -->
 
 
-  </div>
+
+
+
+
+      </div>
 
 
 
