@@ -36,6 +36,8 @@ const countries = [];
 let region = []
 
 async function getCountries() {
+  cardContainer.innerHTML = " "
+
   const response = await fetch("/data.json");
   const data = await response.json();
 
@@ -54,10 +56,22 @@ async function getCountries() {
 
     // cardContainer.insertAdjacentHTML("beforeend", temp);
  
-    if (reg == 'Americas') {
-      cardContainer.insertAdjacentHTML("afterbegin", temp);
-    }
-  })
+    // if (reg == 'Americas') {
+    //   cardContainer.insertAdjacentHTML("afterbegin", temp);
+    // }
+
+    
+    
+    down.addEventListener("click", (e) => {
+      const regionList = e.target.closest(".regionList");
+      if(regionList){
+       const filterRegion =  regionList.dataset.region;
+       if (reg == filterRegion) {
+          cardContainer.insertAdjacentHTML("afterbegin", temp);
+        }
+    
+      }
+    })
     // return
 
 
@@ -65,15 +79,16 @@ async function getCountries() {
   down.innerHTML = ''
   allRegions.forEach(reg => {
     console.log(reg);
-    const regionTemp = ` <li class=" list-none" data-region="${reg}">${reg}</li>`
+    const regionTemp = ` <li class="regionList list-none" data-region="${reg}">${reg}</li>`
     down.insertAdjacentHTML('afterbegin', regionTemp)
 
   })
-}
+  })}
 
-
-
-getCountries();
+  getCountries();
+  down.addEventListener("click", (e) => {
+      cardContainer.innerHTML = " "
+  })
 getCountries.bind(region)
 
 
