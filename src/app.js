@@ -11,8 +11,8 @@ console.log(drop);
 const cardContainer = document.getElementById("cardCont");
 console.log(cardContainer);
 const cardMarkUp = `
-  <li class="cards  shadow-2xl rounded-sm bg-[--appbar] flex list-none  flex-col ">
-      <figure class="w-full h-1/2 flex-1">  <img class=" w-full h-full block object-cover object-center"  src=":IMG" , alt=":NAME"></figure>
+  <li class="cards  transition ease-in-out delay-150 hover:-translate-y-3 hover:scale-130  overflow-hidden duration-200    shadow-2xl rounded bg-[--appbar] flex list-none  flex-col ">
+      <figure class="w-full h-1/2 flex-1">  <img class="  w-full h-full block object-cover object-center"  src=":IMG" , alt=":NAME"></figure>
          
          <div class="textbox h-1/2 px-4 py-4 flex-1">
             <p class="mb-2 text-[--text]  font-bold">:NAME</p>
@@ -40,6 +40,8 @@ async function getCountries() {
 
   const response = await fetch("/data.json");
   const data = await response.json();
+  console.log(data);
+  
 
 
 
@@ -78,7 +80,7 @@ async function getCountries() {
   const allRegions = [...new Set(region)]
   down.innerHTML = ''
   allRegions.forEach(reg => {
-    console.log(reg);
+    // console.log(reg);
     const regionTemp = ` <li class="regionList list-none" data-region="${reg}">${reg}</li>`
     down.insertAdjacentHTML('afterbegin', regionTemp)
 
@@ -86,7 +88,14 @@ async function getCountries() {
   })}
 
   getCountries();
+
+  
+const toggleDropdown = function () {
+  down.classList.toggle('display-none')
+}
   down.addEventListener("click", (e) => {
+    // down.classList.toggle('hidden')
+    toggleDropdown()
       cardContainer.innerHTML = " "
   })
 getCountries.bind(region)
@@ -128,9 +137,6 @@ sunIcon.addEventListener("click", themeSwitch)
 
 themeCheck()
 
-const toggleDropdown = function () {
-  down.classList.toggle('display-none')
-}
 drop.addEventListener('click',
   toggleDropdown
 )
