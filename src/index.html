@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dar">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -12,18 +12,28 @@
 
 <body>
 
-  <nav class=" px-16 py-4  flex-wrap flex justify-between content-center ">
+  <nav class=" px-16 py-4   flex-wrap flex justify-between content-center ">
     <h2 class=" text-xl text-[--text] ">Where in the world</h2>
     <div class="theme">
       <figure class="figure  flex gap-2 justify-center content-center">
-        <img class="moon  icon" data-theme="dark" src="./asset/Moon.svg" alt="">
-        <img class="sun  icon" data-theme="light" src="./asset/sun.svg" alt="">
+        <svg class="moon fill-[--text]  icon" data-theme="dark" width="24" height="24" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M9 6C9 10.9706 13.0294 15 18 15C18.9093 15 19.787 14.8655 20.6144 14.6147C19.4943 18.3103 16.0613 20.9999 12 20.9999C7.02944 20.9999 3 16.9707 3 12.0001C3 7.93883 5.69007 4.50583 9.38561 3.38574C9.13484 4.21311 9 5.09074 9 6Z"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+        <svg class="sun  stroke-inherit fill-[--text]  shadow-2xl icon" data-theme="light"
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M4.069 13h-4.069v-2h4.069c-.041.328-.069.661-.069 1s.028.672.069 1zm3.034-7.312l-2.881-2.881-1.414 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm11.209 1.414l2.881-2.881-1.414-1.414-2.881 2.881c.528.411 1.002.886 1.414 1.414zm-6.312-3.102c.339 0 .672.028 1 .069v-4.069h-2v4.069c.328-.041.661-.069 1-.069zm0 16c-.339 0-.672-.028-1-.069v4.069h2v-4.069c-.328.041-.661.069-1 .069zm7.931-9c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-3.033 7.312l2.88 2.88 1.415-1.414-2.88-2.88c-.412.528-.886 1.002-1.415 1.414zm-11.21-1.415l-2.88 2.88 1.414 1.414 2.88-2.88c-.528-.411-1.003-.885-1.414-1.414zm2.312-4.897c0 2.206 1.794 4 4 4s4-1.794 4-4-1.794-4-4-4-4 1.794-4 4zm10 0c0 3.314-2.686 6-6 6s-6-2.686-6-6 2.686-6 6-6 6 2.686 6 6z" />
+        </svg>
         <figcaption class=" text-[--text] capitalize">dark mode</figcaption>
-        </>
+      </figure>
 
     </div>
   </nav>
-  <div id="root" class=" p-4 rounded-lg ">
+  <div id="root" class="   p-4 rounded-lg ">
 
     <div class="assesibles mx-10 content-center flex justify-between">
 
@@ -31,8 +41,8 @@
         <label for="default-search"
           class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class=" relative">
-          <div class="absolute top- inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <svg class="w-4 h-4 text-[--text] dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+          <div class="absolute top- inset-y-0 start-0 flex items-center ps-3 cursor-pointer  ">
+            <svg type="submit" id="searchIcon" class="w-4 h-4  text-[--text] dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="none" viewBox="0 0 20 20">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
@@ -60,9 +70,9 @@
       </div>
     </div>
 
-      <div id="cardCont"
-        class="renderCards mx-10 mt-16 h-full grid   lg:grid-cols-4 md:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1 xxs:grid-cols-1 gap-10">
-        <!-- <li class="cards  flex align-items list-none  flex-col ">
+    <div id="cardCont"
+      class="renderCards   mx-10 mt-16 h-full grid   lg:grid-cols-4 md:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1 xxs:grid-cols-1 gap-10">
+      <!-- <li class="cards  flex align-items list-none  flex-col ">
           <img w- src=":IMG" , alt=":NAME">
           <div class="textbox">
             <p>:NAME</p>
@@ -81,15 +91,15 @@
 
         </li>`; -->
 
-      </div>
-
     </div>
 
+  </div>
 
-    <div id="cardCont"
-      class="renderCards mx-6 mt-16 h-full grid   lg:grid-cols-4 md:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1 xxs:grid-cols-1 gap-10">
 
-      <!-- <li class="cards ">
+  <div id="cardCont"
+    class="renderCards  mx-6 mt-16 h-full grid   lg:grid-cols-4 md:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1 xxs:grid-cols-1 gap-10">
+
+    <!-- <li class="cards ">
       <img src=":img" alt=":NAME">
       <p>:NAME</p>
       <ul>
@@ -100,13 +110,49 @@
       
       
   </li> -->
-    </div>
+  </div>
 
-    </div>
+
+  <div class="modal hidden  ">
+    <button id="home"
+      class="flex gap-2 rounded-md scale-100 bg-[--element] py-2 px-4 border border-transparent shadow-2xl  text-center text-sm text-white transition-all  mb-4  hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-[--appbar] hover:bg-[--gradien] active:shadow-none  active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+      type="button">
+      <svg class=" fill-[--text]  shadow-2xl" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+        fill-rule="evenodd" clip-rule="evenodd">
+        <path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" />
+      </svg>
+
+      </svg>
+
+      back
+    </button>
+
+    <!-- <div class="content">
+      <figure><img src="${flag}" alt="${flag}"></figure>
+
+      <div class="textbox">
+        <h2>$name</h2>
+        <ul>
+          <li>Native Name:${native}</li>
+          <li>Population:${population}</li>
+          <li>Pegion:${region}</li>
+          <li>sub region:${subregion}</li>
+          <li>capital:${capital}</li>
+          <li>top level domain:${currencies}</li>
+          <li>currencies:${languages}</li>
+          <li>languages:${domain}</li>
+
+        </ul>
+
+        <p>border countries: ${}</p>
+    
+      </div>
+    </div> -->
+  </div>
 
 
 
 </body>
-<script src="app.js" type="module"></script>
+<script src="app.js" ></script>
 
 </html>

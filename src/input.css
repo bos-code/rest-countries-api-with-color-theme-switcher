@@ -54,10 +54,6 @@ nav{
 	background-color: var(--appbar);
 }
 
-form input{
-	background-image: url('..');
-}
-
 body {
 	padding: 400;
 	width: 100%;
@@ -84,4 +80,9 @@ div[id='root'] {
 
 .display-none{
 	@apply hidden;
+}
+
+.modal{
+	height: 90vh;
+	@apply     w-lvw    top-full left-0  overflow-hidden z-20 px-16
 }
