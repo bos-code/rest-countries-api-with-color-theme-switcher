@@ -118,16 +118,19 @@ countNames.push({name: country.name})
           const  letter = cName.split('')
           if (cName.includes(value)) {
             // cardContainer.innerHTML = ''
-            cardContainer.insertAdjacentHTML("afterbegin", temp);
-            if(value = ''){
-            cardContainer.insertAdjacentHTML("afterbegin", temp);
+            cardContainer.insertAdjacentHTML("beforeend", temp);
+            if(value == ''){
+              countries.map(coun => {
+
+                cardContainer.insertAdjacentHTML("beforeend", temp);
+              })
 
             }
           }
           // console.log(letter);
           if (value == cName ) {
             cardContainer.innerHTML = ''
-            cardContainer.insertAdjacentHTML("afterbegin", temp);
+            cardContainer.insertAdjacentHTML("beforeend", temp);
          
           }
         })
@@ -149,7 +152,7 @@ console.log(countNames);
         const countryName = cad.dataset.name
         data.filter((country) => {
           if (country.name == countryName) {
-            // console.log(country);  return country
+            console.log(country);  return country
           }
         }).map((country, i) => {
           const name = country.name
@@ -175,7 +178,7 @@ console.log(countNames);
 
           //   })
           // console.log(currencies);
-          border.forEach(coun => {
+          border.map(coun => {
             countries.filter(cub => {
               if (cub.alpha3Code
                 == coun) {
