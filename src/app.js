@@ -49,178 +49,129 @@ const cardMarkUp = `
 </li>
 `;
 
-const countries = [];
-let region = [];
+let countries = [];
+let filteredCountries = null;
+const regions = new Set([]);
 
 async function getCountries() {
-  cardContainer.innerHTML = ' ';
-
   const response = await fetch('/data.json');
   const data = await response.json();
-  console.log(data);
 
-  let countNames = [];
+  // Clear Regions
+  regions.clear();
 
-  data.map((country, i) => {
+  countries = data;
+
+  // Render Countries
+  renderCountries();
+}
+
+function renderCountries() {
+  cardContainer.innerHTML = '';
+
+  (filteredCountries || countries).forEach((country) => {
     let temp = cardMarkUp.replaceAll(':NAME', country.name);
     temp = temp.replaceAll(':IMG', country.flag);
     temp = temp.replaceAll(':population', country.population);
     temp = temp.replaceAll(':REGION', country.region);
     temp = temp.replaceAll(':CAPITAL', country.capital);
-    countNames.push({ name: country.name });
-    countries.push(country);
 
-    const reg = country.region;
-    region.push(reg);
+    regions.add(country.region);
 
-    // cardContainer.insertAdjacentHTML("beforeend", temp);
-
-    // if (reg == 'Americas') {
     cardContainer.insertAdjacentHTML('beforeend', temp);
-    // }
-    //
+  });
 
-    down.addEventListener('click', (e) => {
-      const regionList = e.target.closest('.regionList');
-      if (regionList) {
-        const filterRegion = regionList.dataset.region;
-        if (reg == filterRegion) {
-          cardContainer.insertAdjacentHTML('afterbegin', temp);
-        }
+  // Render Region
+  renderRegions();
+}
+
+function renderRegions() {
+  down.innerHTML = '';
+
+  regions.forEach(function (reg) {
+    const regionTemp = ` <li class="regionList list-none" data-region="${reg}">${reg}</li>`;
+
+    down.insertAdjacentHTML('afterbegin', regionTemp);
+  });
+}
+
+function searchFunctionality(event) {
+  const searchQuery = event.target.value.trim();
+
+  if (!searchQuery || searchQuery.length >= 30) {
+    filteredCountries = null;
+    renderCountries();
+    return;
+  }
+
+  const filtered = countries.filter((country) => {
+    const cName = country.name.toLowerCase();
+    const value = searchQuery.toLowerCase();
+
+    return cName.includes(value) || value === cName;
+  });
+
+  filteredCountries = filtered;
+
+  renderCountries();
+}
+
+function openCountriesModal(event) {
+  const cad = event.target.closest('.cards');
+
+  if (!cad) return;
+
+  cardContainer.classList.add('hidden');
+  document.getElementById('root').classList.add('hidden');
+  document.querySelector('.modal').classList.remove('hidden');
+
+  const countryName = cad.dataset.name;
+
+  const country = countries.find((country) => country.name == countryName);
+
+  const name = country.name;
+  const flag = country.flag;
+  const population = country.population;
+  const region = country.region;
+  const subregion = country.subregion;
+  const capital = country.capital;
+  const currencies = country.currencies?.map((currency) => currency.name).join(', ')
+
+  const languages = country.languages?.map(language => language.name).join(', ');
+  const domain = country.topLevelDomain;
+  const native = country.nativeName;
+  const border = country?.borders || [];
+
+  border.map((coun) => {
+    countries.filter((cub) => {
+      if (cub.alpha3Code == coun) {
+        // RENDER BORDER COUNTRIES
       }
-    });
-    // return
-
-    const allRegions = [...new Set(region)];
-    down.innerHTML = '';
-    allRegions.forEach((reg) => {
-      // console.log(reg);
-      const regionTemp = ` <li class="regionList list-none" data-region="${reg}">${reg}</li>`;
-      down.insertAdjacentHTML('afterbegin', regionTemp);
     });
   });
 
-  const searchFunctionality = function (evt) {
-    // evt.preventDefault();
-    searchBox.addEventListener('click', (e) => {
-      e.preventDefault();
-      console.log('come');
-    });
-    if (searchBox.value != ' ' || searchBox.value <= 30) {
-      // e.prevent
-      searchBox.addEventListener('input', (e) => {
-        e.preventDefault();
-        countries.filter((country) => {
-          let temp = cardMarkUp.replaceAll(':NAME', country.name);
-          temp = temp.replaceAll(':IMG', country.flag);
-          temp = temp.replaceAll(':population', country.population);
-          temp = temp.replaceAll(':REGION', country.region);
-          temp = temp.replaceAll(':CAPITAL', country.capital);
-          const cName = country.name.toLowerCase();
-          const value = searchBox.value.toLowerCase();
+  const markup = `
+   <div class="content justify-center flex items-center gap-32">
+     <figure class=" flex-1"><img class="w-full" src="${flag}" alt="${flag}"></figure>
+     <div class="textbox  flex-1 capitalize  text-base font-medium text-[--text]">
+       <h2 class=" text-lg mb-3 font-bold">${name}</h2>
+       <ul class="flex  h-40 flex-col flex-wrap gap-2">
+         <li class=" text-gray-400"><span class=" text-gray-200">Native Name:</span> ${native}</li>
+         <li class=" text-gray-400"><span class=" text-gray-200">Population :</span>${population}</li>
+         <li class=" text-gray-400"><span class=" text-gray-200">region: </span>${region}</li>
+         <li class=" text-gray-400"><span class=" text-gray-200">sub region:</span> ${subregion}</li>
+         <li class=" text-gray-400"><span class=" text-gray-200">capital:</span> ${capital}</li>
+         <li class=" text-gray-400"><span class=" text-gray-200">languages:</span> ${languages}</li>
+         <li class=" text-gray-400"><span class=" text-gray-200">top level domain:</span> ${domain}</li>
+         <li class=" text-gray-400"><span class=" text-gray-200">currencies</span>: ${currencies}</li>
+       </ul>
+       <p class=" mt-10 text-gray-400 flex gap-2 flex-wrap whitespace-nowrap"><span class=" text-gray-200">border countries:</span></p>
+     </div>
+   </div>
+  `;
 
-          const letter = cName.split('');
-          if (cName.includes(value)) {
-            // cardContainer.innerHTML = ''
-            cardContainer.insertAdjacentHTML('beforeend', temp);
-            if (value == '') {
-              countries.map((coun) => {
-                cardContainer.insertAdjacentHTML('beforeend', temp);
-              });
-            }
-          }
-          // console.log(letter);
-          if (value == cName) {
-            cardContainer.innerHTML = '';
-            cardContainer.insertAdjacentHTML('beforeend', temp);
-          }
-        });
-      });
-    }
-  };
-
-  searchFunctionality();
-  console.log(countNames);
-  const many = [];
-  const moreModal = function () {
-    cardContainer?.addEventListener('click', function (e) {
-      const cad = e.target.closest('.cards');
-      if (cad) {
-        cardContainer.classList.add('hidden');
-        document.getElementById('root').classList.add('hidden');
-        document.querySelector('.modal').classList.remove('hidden');
-        const countryName = cad.dataset.name;
-        data
-          .filter((country) => {
-            if (country.name == countryName) {
-              console.log(country);
-              return country;
-            }
-          })
-          .map((country, i) => {
-            const name = country.name;
-            const flag = country.flag;
-            const population = country.population;
-            const region = country.region;
-            const subregion = country.subregion;
-            const capital = country.capital;
-            const currencies = [...country.currencies];
-
-            const [languages] = country.languages;
-            const domain = country.topLevelDomain;
-            const native = country.nativeName;
-            const border = country.borders;
-
-            //   currencies.forEach( coun =>{
-            // console.log(coun.name);
-
-            //   })
-            // console.log(currencies);
-            border.map((coun) => {
-              countries.filter((cub) => {
-                if (cub.alpha3Code == coun) {
-                  console.log([cub.name]);
-                }
-              });
-            });
-
-            const markup = `
-          <div class="content justify-center flex items-center gap-32">
-  <figure class=" flex-1"><img class="w-full" src="${flag}" alt="${flag}"></figure>
-
-  <div class="textbox  flex-1 capitalize  text-base font-medium text-[--text]">
-    <h2 class=" text-lg mb-3 font-bold">${name}</h2>
-    <ul  class= "flex  h-40 flex-col flex-wrap gap-2">
-      <li class=" text-gray-400"><span class=" text-gray-200">Native Name:</span> ${native}</li>
-      <li class=" text-gray-400"><span class=" text-gray-200">Population :</span>${population}</li>
-      <li class=" text-gray-400"><span class=" text-gray-200">region: </span>${region}</li>
-      <li class=" text-gray-400"><span class=" text-gray-200">sub region:</span> ${subregion}</li>
-      <li class=" text-gray-400"><span class=" text-gray-200">capital:</span> ${capital}</li>
-      <li class=" text-gray-400"><span class=" text-gray-200">languages:</span> ${domain}</li>
-      <li class=" text-gray-400"><span class=" text-gray-200">top level domain:</span> ${currencies.name}</li>
-      <li class=" text-gray-400"><span class=" text-gray-200">currencies</span>: ${languages}</li>
-
-    </ul>
-
-    <p class=" mt-10 text-gray-400 flex gap-2 flex-wrap whitespace-nowrap"><span class=" text-gray-200">border countries:</span></p>
-
-  </div>
-</div>`;
-
-            contentContainer.insertAdjacentHTML('beforeend', markup);
-
-            console.log(country, 1, many);
-          });
-      }
-    });
-  };
-  moreModal();
+  contentContainer.insertAdjacentHTML('beforeend', markup);
 }
-navBtn.addEventListener('click', () => {
-  console.log('come');
-  contentContainer.innerHTML = ' ';
-});
-getCountries();
 
 const toggleDisplay = function () {
   if (navBtn) {
@@ -228,17 +179,16 @@ const toggleDisplay = function () {
     document.getElementById('root').classList.remove('hidden');
   }
 };
-navBtn.addEventListener('click', toggleDisplay);
 
 const toggleDropdown = function () {
   down.classList.toggle('display-none');
 };
+
 down.addEventListener('click', (e) => {
   // down.classList.toggle('hidden')
   toggleDropdown();
   cardContainer.innerHTML = ' ';
 });
-getCountries.bind(region);
 
 const toggleIcon = function () {
   moonIcon.classList.toggle('display-none');
@@ -266,9 +216,22 @@ const themeSwitch = function () {
   localStorage.setItem('theme', 'light');
   toggleIcon();
 };
-moonIcon.addEventListener('click', themeSwitch);
-sunIcon.addEventListener('click', themeSwitch);
 
-themeCheck();
+function main() {
+  getCountries();
+  themeCheck();
+}
+
+// WHY TWO LISTINERS???
+navBtn.addEventListener('click', toggleDisplay);
+navBtn.addEventListener('click', () => {
+  contentContainer.innerHTML = ' ';
+});
 
 drop.addEventListener('click', toggleDropdown);
+moonIcon.addEventListener('click', themeSwitch);
+sunIcon.addEventListener('click', themeSwitch);
+searchBox.addEventListener('input', searchFunctionality);
+cardContainer.addEventListener('click', openCountriesModal);
+
+main();
