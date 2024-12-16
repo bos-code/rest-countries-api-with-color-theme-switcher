@@ -1,16 +1,16 @@
-const sunIcon = document.querySelector('.sun');
-const moonIcon = document.querySelector('.moon');
-const UserTheme = localStorage.getItem('them');
-const systemTheme = window.matchMedia('[prefers-coloe-scheme: dark]').matches;
-const drop = document.querySelector('.drop');
-let down = document.querySelector('.down');
-const navBtn = document.getElementById('home');
-const contentBox = document.querySelector('.modal');
-const searchBox = document.getElementById('default-search');
-const searchIcon = document.getElementById('searchIcon');
-const contentContainer = document.querySelector('.contentBox');
+const sunIcon = document.querySelector(".sun");
+const moonIcon = document.querySelector(".moon");
+const UserTheme = localStorage.getItem("them");
+const systemTheme = window.matchMedia("[prefers-coloe-scheme: dark]").matches;
+const drop = document.querySelector(".drop");
+let down = document.querySelector(".down");
+const navBtn = document.getElementById("home");
+const contentBox = document.querySelector(".modal");
+const searchBox = document.getElementById("default-search");
+const searchIcon = document.getElementById("searchIcon");
+const contentContainer = document.querySelector(".contentBox");
 
-const cardContainer = document.getElementById('cardCont');
+const cardContainer = document.getElementById("cardCont");
 const cardMarkUp = `
   <li
   data-name=":NAME"
@@ -54,7 +54,7 @@ let filteredCountries = null;
 const regions = new Set([]);
 
 async function getCountries() {
-  const response = await fetch('/data.json');
+  const response = await fetch("/data.json");
   const data = await response.json();
 
   // Clear Regions
@@ -67,18 +67,18 @@ async function getCountries() {
 }
 
 function renderCountries() {
-  cardContainer.innerHTML = '';
+  cardContainer.innerHTML = "";
 
   (filteredCountries || countries).forEach((country) => {
-    let temp = cardMarkUp.replaceAll(':NAME', country.name);
-    temp = temp.replaceAll(':IMG', country.flag);
-    temp = temp.replaceAll(':population', country.population);
-    temp = temp.replaceAll(':REGION', country.region);
-    temp = temp.replaceAll(':CAPITAL', country.capital);
+    let temp = cardMarkUp.replaceAll(":NAME", country.name);
+    temp = temp.replaceAll(":IMG", country.flag);
+    temp = temp.replaceAll(":population", country.population);
+    temp = temp.replaceAll(":REGION", country.region);
+    temp = temp.replaceAll(":CAPITAL", country.capital);
 
     regions.add(country.region);
 
-    cardContainer.insertAdjacentHTML('beforeend', temp);
+    cardContainer.insertAdjacentHTML("beforeend", temp);
   });
 
   // Render Region
@@ -86,12 +86,12 @@ function renderCountries() {
 }
 
 function renderRegions() {
-  down.innerHTML = '';
+  down.innerHTML = "";
 
   regions.forEach(function (reg) {
     const regionTemp = ` <li class="regionList list-none" data-region="${reg}">${reg}</li>`;
 
-    down.insertAdjacentHTML('afterbegin', regionTemp);
+    down.insertAdjacentHTML("afterbegin", regionTemp);
   });
 }
 
@@ -117,13 +117,13 @@ function searchFunctionality(event) {
 }
 
 function openCountriesModal(event) {
-  const cad = event.target.closest('.cards');
+  const cad = event.target.closest(".cards");
 
   if (!cad) return;
 
-  cardContainer.classList.add('hidden');
-  document.getElementById('root').classList.add('hidden');
-  document.querySelector('.modal').classList.remove('hidden');
+  cardContainer.classList.add("hidden");
+  document.getElementById("root").classList.add("hidden");
+  document.querySelector(".modal").classList.remove("hidden");
 
   const countryName = cad.dataset.name;
 
@@ -135,9 +135,13 @@ function openCountriesModal(event) {
   const region = country.region;
   const subregion = country.subregion;
   const capital = country.capital;
-  const currencies = country.currencies?.map((currency) => currency.name).join(', ')
+  const currencies = country.currencies
+    ?.map((currency) => currency.name)
+    .join(", ");
 
-  const languages = country.languages?.map(language => language.name).join(', ');
+  const languages = country.languages
+    ?.map((language) => language.name)
+    .join(", ");
   const domain = country.topLevelDomain;
   const native = country.nativeName;
   const border = country?.borders || [];
@@ -170,50 +174,50 @@ function openCountriesModal(event) {
    </div>
   `;
 
-  contentContainer.insertAdjacentHTML('beforeend', markup);
+  contentContainer.insertAdjacentHTML("beforeend", markup);
 }
 
 const toggleDisplay = function () {
   if (navBtn) {
-    cardContainer.classList.remove('hidden');
-    document.getElementById('root').classList.remove('hidden');
+    cardContainer.classList.remove("hidden");
+    document.getElementById("root").classList.remove("hidden");
   }
 };
 
 const toggleDropdown = function () {
-  down.classList.toggle('display-none');
+  down.classList.toggle("display-none");
 };
 
-down.addEventListener('click', (e) => {
+down.addEventListener("click", (e) => {
   // down.classList.toggle('hidden')
   toggleDropdown();
-  cardContainer.innerHTML = ' ';
+  cardContainer.innerHTML = " ";
 });
 
 const toggleIcon = function () {
-  moonIcon.classList.toggle('display-none');
-  sunIcon.classList.toggle('display-none');
+  moonIcon.classList.toggle("display-none");
+  sunIcon.classList.toggle("display-none");
 };
 
 const themeCheck = function () {
-  if (UserTheme === 'dark' || (!UserTheme && systemTheme)) {
-    document.documentElement.classList.add('dark');
-    moonIcon.classList.add('display-none');
+  if (UserTheme === "dark" || (!UserTheme && systemTheme)) {
+    document.documentElement.classList.add("dark");
+    moonIcon.classList.add("display-none");
     return;
   }
-  sunIcon.classList.add('display-none');
+  sunIcon.classList.add("display-none");
 };
 
 const themeSwitch = function () {
-  if (document.documentElement.classList.contains('dark')) {
-    document.documentElement.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
+  if (document.documentElement.classList.contains("dark")) {
+    document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", "light");
     toggleIcon();
     return;
   }
 
-  document.documentElement.classList.add('dark');
-  localStorage.setItem('theme', 'light');
+  document.documentElement.classList.add("dark");
+  localStorage.setItem("theme", "light");
   toggleIcon();
 };
 
@@ -223,15 +227,35 @@ function main() {
 }
 
 // WHY TWO LISTINERS???
-navBtn.addEventListener('click', toggleDisplay);
-navBtn.addEventListener('click', () => {
-  contentContainer.innerHTML = ' ';
+navBtn.addEventListener("click", toggleDisplay);
+navBtn.addEventListener("click", () => {
+  contentContainer.innerHTML = " ";
 });
 
-drop.addEventListener('click', toggleDropdown);
-moonIcon.addEventListener('click', themeSwitch);
-sunIcon.addEventListener('click', themeSwitch);
-searchBox.addEventListener('input', searchFunctionality);
-cardContainer.addEventListener('click', openCountriesModal);
+drop.addEventListener("click", toggleDropdown);
+moonIcon.addEventListener("click", themeSwitch);
+sunIcon.addEventListener("click", themeSwitch);
+searchBox.addEventListener("input", searchFunctionality);
+cardContainer.addEventListener("click", openCountriesModal);
+// down.addEventListener("click", filterForRegion);
+
+function filterForRegion() {
+  down.addEventListener("click", (e) => {
+    const reg = e.target.closest(".regionList");
+
+    if (!reg) {
+      filteredCountries = null;
+      return;
+    }
+    const regID = reg.dataset.region;
+    const filtered = countries.filter((country) => {
+      const region = country.region;
+      return region === regID;
+    });
+    filteredCountries = filtered;
+    renderCountries();
+  });
+}
+filterForRegion();
 
 main();
