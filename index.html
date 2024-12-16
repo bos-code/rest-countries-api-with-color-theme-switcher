@@ -12,7 +12,7 @@
 
 <body>
 
-  <nav class=" px-16 py-4   flex-wrap flex justify-between content-center ">
+  <nav class=" xs:px-6 px-8 md:px-16 py-4   flex-wrap flex justify-between content-center ">
     <h2 class=" text-xl text-[--text] ">Where in the world</h2>
     <div class="theme">
       <figure class="figure  flex gap-2 justify-center content-center">
@@ -35,9 +35,10 @@
   </nav>
   <div id="root" class="   p-4 rounded-lg ">
 
-    <div class="assesibles  flex  items-center  flex-warp  justify-between  mx-10 sm:mx-0.5">
+    <div
+      class="assesibles  flex  items-center  md:flex-nowrap    justify-center   md:justify-between mx-6  xs:mx-5 md:mx-10">
 
-      <div class="  relative flex  grow  w-60 mx-auto">
+      <div class="  relative flex xs:w-svw  grow  w-60 mx-auto">
         <label for="default-search"
           class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class=" relative">
@@ -49,17 +50,17 @@
             </svg>
           </div>
           <input type="search" id="default-search"
-            class="block  w-0.5 md:w-0.8 lg:w-80 shadow-2xl   p-2 rounded-md ps-10 placeholder:text-[--text] text-[--text] placeholder:text-xs bg-[--appbar] text-sm"
+            class=" w-44 md:w-60 lg:w-80 shadow-2xl  mx-auto  p-2 rounded-md ps-10 placeholder:text-[--text] text-[--text] placeholder:text-xs bg-[--appbar] text-sm"
             placeholder="Search for a country..." required />
 
         </div>
       </div>
 
-      <div class="dropdown relative  flex flex-col gap-1 ">
-        <div class="drop  gap-2  bg-[--appbar] px-5 pt-2 rounded flex ">
-          <p class=" capitalize text-sm text-[--text] bg-[--appbar]">filter by region</p>
-          <svg class=" fill-white " xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-            width="24px">
+      <div class="dropdown  relative whitespace-nowrap  flex flex-col gap-1 ">
+        <div class="drop  gap-1  bg-[--appbar] px-2 py-2 md:px-5  rounded flex ">
+          <p class=" capitalize  text-xs md:text-sm text-[--text] bg-[--appbar]">filter by region</p>
+          <svg class=" hidden sm:block fill-white " xmlns="http://www.w3.org/2000/svg" height="24px"
+            viewBox="0 -960 960 960" width="24px">
             <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
           </svg>
 
@@ -70,26 +71,9 @@
       </div>
     </div>
 
-    <div id="cardCont"
-      class="renderCards   mx-10 mt-16 h-full grid   lg:grid-cols-4 md:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1  gap-10">
-      <!-- <li class="cards  flex align-items list-none  flex-col ">
-          <img w- src=":IMG" , alt=":NAME">
-          <div class="textbox">
-            <p>:NAME</p>
-            <ul>
-              <li>
-                <p>population: :population</p>
-              </li>
-              <li>
-                <p>Region: :REGION</p>
-              </li>
-              <li>
-                <p>capital: :CAPITAL</p>
-              </li>
-            </ul>
-          </div>
+    <div id="cardCont" class="renderCards   mx-3 md:mx-10 mt-10 md:mt-16
+       h-full grid   lg:grid-cols-4 md:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1  gap-8 md:gap-10">
 
-        </li>`; -->
 
     </div>
 
@@ -99,17 +83,6 @@
   <div id="cardCont"
     class="renderCards  mx-6 mt-16 h-full grid   lg:grid-cols-4 md:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1  gap-10">
 
-    <!-- <li class="cards ">
-      <img src=":img" alt=":NAME">
-      <p>:NAME</p>
-      <ul>
-          <li><p>:population</p></li>
-          <li><p>:REGION</p></li>
-          <li><p>:CAPITAL</p></li>
-      </ul>
-      
-      
-  </li> -->
   </div>
 
 
@@ -129,27 +102,7 @@
 
     <div class="contentBox"></div>
 
-    <!-- <div class="content">
-      <figure><img src="${flag}" alt="${flag}"></figure>
 
-      <div class="textbox">
-        <h2>$name</h2>
-        <ul>
-          <li>Native Name:${native}</li>
-          <li>Population:${population}</li>
-          <li>Pegion:${region}</li>
-          <li>sub region:${subregion}</li>
-          <li>capital:${capital}</li>
-          <li>top level domain:${currencies}</li>
-          <li>currencies:${languages}</li>
-          <li>languages:${domain}</li>
-
-        </ul>
-
-        <p>border countries: ${}</p>
-    
-      </div>
-    </div> -->
   </div>
 
 </body>

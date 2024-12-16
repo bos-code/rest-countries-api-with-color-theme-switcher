@@ -1,3 +1,4 @@
+console.log('come');
 const sunIcon = document.querySelector(".sun");
 const moonIcon = document.querySelector(".moon");
 const UserTheme = localStorage.getItem("them");
@@ -155,11 +156,11 @@ function openCountriesModal(event) {
   });
 
   const markup = `
-   <div class="content justify-center flex items-center gap-32">
+   <div class="content justify-center flex flex-col md:flex-row items-center gap-10 md:gap-32">
      <figure class=" flex-1"><img class="w-full" src="${flag}" alt="${flag}"></figure>
      <div class="textbox  flex-1 capitalize  text-base font-medium text-[--text]">
        <h2 class=" text-lg mb-3 font-bold">${name}</h2>
-       <ul class="flex  h-40 flex-col flex-wrap gap-2">
+       <ul class="flex  text-xl md:text-sm  md:h-40 h-auto flex-col md:flex-wrap md:gap-2 gap-3">
          <li class=" text-gray-400"><span class=" text-gray-200">Native Name:</span> ${native}</li>
          <li class=" text-gray-400"><span class=" text-gray-200">Population :</span>${population}</li>
          <li class=" text-gray-400"><span class=" text-gray-200">region: </span>${region}</li>

@@ -84,7 +84,7 @@ div[id='root'] {
 
 .modal{
 	/* height: 90vh; */
-	@apply     w-lvw    top-full left-0  overflow-hidden z-20 px-16
+	@apply     w-lvw    top-full left-0  overflow-hidden z-20 px-8 md:px-16
 }
 
 
